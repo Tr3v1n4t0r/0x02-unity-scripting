@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Move();
+        HealthCheck();
     }
 
     private void Move()
@@ -31,6 +33,17 @@ public class PlayerController : MonoBehaviour
         Vector3 roll = new Vector3(horizontal, 0, vertical);
         roll = roll * speed * Time.deltaTime;
         Rb3D.AddForce(roll);
+    }
+
+    private void HealthCheck()
+    {
+        if (health == 0)
+        {
+            Debug.Log("Game Over!");
+            health = 5;
+            score = 0;
+            SceneManager.LoadScene("maze");
+        }
     }
 
     private void OnTriggerEnter(Collider col)
