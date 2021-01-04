@@ -46,6 +46,9 @@ public class PlayerController : MonoBehaviour
                 health--;
                 Debug.Log($"Health: {health}");
                 break;
+            case "Goal":
+                Debug.Log("You win!");
+                break;
         }
     }
 }
